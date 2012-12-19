@@ -3,7 +3,7 @@ HueJS
 
 A Javascript library for controlling the Philips Hue light system.
 
-This library is still in its infancy, but it is designed to let javascript control the Philips Hue WiFi Lights.
+This library is still in its infancy, but it is designed to let javascript control the Philips Hue WiFi Lights. You will need to be on the same network as your Hue base station for this to work.
 
 ## Resources ##
 The functionality in this library is largely based off the work of others. Both of the sites below also provide a good overview of the Hue system's API.
