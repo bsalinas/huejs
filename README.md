@@ -83,6 +83,83 @@ The resulting object will look something like this:
 
 ### Setting Values ###
 You can set values for the state (only... so not things like Name) using the `setValue` method.
-More coming.
+```
+//Set a set of values for a single light...
+var res = hjs.setValue(1,{bri:123,on:true});
+//Or a set of lights.
+res = hjs.setValue([1,2],{bri:123,on:true});
+```
+The result for `setValue([1,3],{bri:123,hue:456})` will look like this:
+```
+{
+	1:
+	{
+		bri:{success:true, value:123},
+		hue:{success:true, value:456}
+	}, 
+	3:{
+		bri:{success:true, value:123},
+		hue:{success:true, value:456}
+	}
+}
+```
+If you also added in an invalid option, such as `name`, then:
+```
+{
+	1:
+	{
+		bri:{success:true, value:123},
+		hue:{success:true, value:456},
+		name:{success:false, description:'A reason why it failed'}
+	}, 
+		
+	3:{
+		bri:{success:true, value:123},
+		hue:{success:true, value:456},
+		name:{success:false, description:'A reason why it failed'}
+	}
+}
+```
+### Some Other Methods ###
+There are a few other methods to help in setting values. They should probably be refactored to be getters and setters to be more jquery like.
+
+```
+/**
+		* Turns the specified light or lights off.
+		*	lightId: A single id or an array of ids.
+		*	return: The same type of response as setValue.
+		*/
+		turnOff = function(lightId){
+			return setValue(lightId, {on:false});
+		},
+		/**
+		* Turns the specified light or lights on.
+		*	lightId: A single id or an array of ids.
+		*	return: The same type of response as setValue.
+		*/
+		turnOn = function(lightId){
+			return setValue(lightId, {on:true});
+		},
+		/**
+		* Changes the hue and saturation of a light
+		*	lightId: A single id or an array of ids.
+		*	hue: The hue on a scale of 0-65536.
+		*	sat: The saturation on a scale of 0-255.
+		*	return: The same type of response as setValue.
+		*/
+		setHueSat = function(lightId, hue, sat){
+			return setValue(lightId, {hue:hue, sat:sat});
+		},
+
+		/**
+		* Sets the brightness of a light.
+		*	lightId: A single id or an array of ids.
+		*	bri: The brightness on a scale of 0-255 (note that 0 is not off)
+		*	return: The same type of response as setValue.
+		*/
+		setBri = function(lightId, bri){
+			return setValue(lightId, {bri:bri});
+		};
+```
 ## Dependencies ##
 * JQuery
