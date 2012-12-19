@@ -1,0 +1,60 @@
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script src='spectrum.js'></script>
+	<script src="huejs.js"></script>
+<link rel='stylesheet' href='spectrum.css' />
+	<script>
+		$('document').ready(function(){
+			var hjs = HueJS({
+				ipAddress:"192.168.1.10",
+				devicetype:"test2",
+				username: "22a828f1898a4257c3f181e753241337"
+			});
+			$('#btn1').click(function(e){
+				e.preventDefault();
+				hjs.authenticate( function(f){
+					alert("Successfully Authenticated");
+					$('body').append(JSON.stringify(hjs.getCache()));
+					console.log(hjs.getCache());
+				},
+				function(f){
+					alert("Error connecting to Hue");
+					console.log(f);
+				});
+			});
+			$('#btn2').click(function(e){
+				e.preventDefault();
+				var res = hjs.getValue(1,['bri', 'alert','name']);
+				console.log(res);
+				res = hjs.getValue([2,3],['bri', 'alert','name', 'hue', 'sat']);
+				console.log(res);
+			});
+			$('#btn3').click(function(e){
+				e.preventDefault();
+				var res = hjs.setHueSat([1,2],41648,255);
+				console.log(res);
+				res = hjs.setHueSat(3,0,255);
+				console.log(res);
+				res = hjs.setHueSat(4,0,255);
+				console.log(res);
+
+			});
+			
+		});
+
+		
+	</script>
+
+</head>
+
+<body>
+	<h1> Testing Hall Lights</h1>
+
+	<div id="lights"></div>
+	<a id="btn1" href="#">Authenticate</a>
+	<a id="btn2" href="#">Get Some Values (outputs to console)</a>
+	<a id="btn3" href="#">Set Some Values (outputs to console)</a>
+
+</body>
+</html>
