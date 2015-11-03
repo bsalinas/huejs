@@ -5,6 +5,11 @@ A Javascript library for controlling the Philips Hue light system.
 
 This library is still in its infancy, but it is designed to let javascript control the Philips Hue WiFi Lights. You will need to be on the same network as your Hue base station for this to work.
 
+## Important Note ##
+Starting in February 2016, Custom whitelist usernames will no longer be allowed and the bridge randomly generated username must be used instead. Please see [this link](http://www.developers.meethue.com/documentation/important-whitelist-changes) for more information.
+
+This library does not currently support this. If you are interested in taking over ownership of this repo, feel free to do so.
+
 ## Resources ##
 The functionality in this library is largely based off the work of others. Both of the sites below also provide a good overview of the Hue system's API.
 * http://www.issackelly.com/blog/2012/11/10/philips-hue-api-hacking/
